@@ -1,0 +1,17 @@
+# Dependabot configuration.
+# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+#
+# `github-actions` only, and that is the complete set. This repo holds no
+# Dockerfile and no manifest: the build sparse-checkouts `apps/nuq-postgres`
+# from firecrawl/firecrawl and builds upstream's context for arm64. Upstream's
+# base image and packages are picked up by rebuilding, which is what the
+# workflow_dispatch / push trigger is for — Dependabot has nothing to pin here.
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      actions:
+        patterns: ["*"]
